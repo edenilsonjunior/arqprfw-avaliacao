@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-@Entity
+@Entity(name = "user")
 @Data
 public class User {
 

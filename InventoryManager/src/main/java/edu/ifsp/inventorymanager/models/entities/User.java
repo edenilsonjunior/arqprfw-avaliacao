@@ -6,12 +6,10 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Data
-@AllArgsConstructor
 public class User {
 
     @Id
@@ -31,3 +29,4 @@ public class User {
     private String password;
 
 }
+

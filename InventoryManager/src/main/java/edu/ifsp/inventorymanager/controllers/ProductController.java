@@ -4,6 +4,7 @@ import edu.ifsp.inventorymanager.models.entities.Category;
 import edu.ifsp.inventorymanager.models.entities.Product;
 import edu.ifsp.inventorymanager.models.repositories.CategoryRepository;
 import edu.ifsp.inventorymanager.models.repositories.ProductRepository;
+import edu.ifsp.inventorymanager.models.repositories.SupplierRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +18,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductController {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+    private final SupplierRepository supplierRepository;
 
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository, SupplierRepository supplierRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+        this.supplierRepository = supplierRepository;
     }
 
     @GetMapping("/register")
     public String register(Model model) {
 
         model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("suppliers", supplierRepository.findAll() );
 
         return "products/create-product";
     }

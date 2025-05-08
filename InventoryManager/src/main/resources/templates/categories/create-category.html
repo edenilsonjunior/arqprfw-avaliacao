@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Categoria</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-left">
+        <a th:href="@{/main}">
+            <i class='bx bx-package logo'></i>
+        </a>
+    </div>
+    <div class="navbar-right">
+        <a href="/logout" class="btn logout">Sair</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Cadastro de Categoria</h1>
+
+    <form th:action="@{/categories/save}" th:object="${category}" method="post">
+        <div>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div>
+            <label for="position">Descrição:</label>
+            <input type="text" id="position" th:field="*{description}" required>
+        </div>
+
+        <br>
+
+        <div class="button-group">
+            <button type="submit" class="btn save">Salvar</button>
+            <a th:href="@{/categories/list}" class="btn cancel">Voltar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

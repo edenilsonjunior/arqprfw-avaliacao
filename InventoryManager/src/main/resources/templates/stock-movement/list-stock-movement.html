@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Movimentações de Estoque</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="table-container">
+    <h1>Movimentações de Estoque Cadastradas</h1>
+
+    <div th:if="${#lists.isEmpty(stockMovements)}">
+        <p>Nenhuma movimentação de estoque cadastrada.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(stockMovements)}" class="table-wrapper">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Quantidade</th>
+                <th>Data</th>
+                <th>Observação</th>
+                <th>Produto</th>
+                <th>Usuário</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sm : ${stockMovements}">
+                <td th:text="${sm.id}"></td>
+                <td th:text="${sm.movementType}"></td>
+                <td th:text="${sm.quantity}"></td>
+                <td th:text="${sm.movementDate}"></td>
+                <td th:text="${sm.observations}"></td>
+                <td th:text="${sm.product.name}"></td>
+                <td th:text="${sm.user.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="button-group" style="margin-top: 30px;">
+        <a th:href="@{/stock-movement/register}" class="btn save">Adicionar</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Fornecedores</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="table-container">
+    <h1>Fornecedores Cadastrados</h1>
+
+    <div th:if="${#lists.isEmpty(suppliers)}">
+        <p>Nenhum fornecedor cadastrado.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(suppliers)}" class="table-wrapper">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>CNPJ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sup : ${suppliers}">
+                <td th:text="${sup.id}"></td>
+                <td th:text="${sup.name}"></td>
+                <td th:text="${sup.email}"></td>
+                <td th:text="${sup.phone}"></td>
+                <td th:text="${sup.registration}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="button-group" style="margin-top: 30px;">
+        <a th:href="@{/supplier/register}" class="btn save">Adicionar</a>
+    </div>
+</div>
+</body>
+</html>

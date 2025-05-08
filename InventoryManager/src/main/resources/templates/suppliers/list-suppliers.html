@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <title>Lista de Fornecedores</title>
     <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
+
+<nav class="navbar">
+    <div class="navbar-left">
+        <a th:href="@{/main}">
+            <i class='bx bx-package logo'></i>
+        </a>
+    </div>
+    <div class="navbar-right">
+        <a href="/logout" class="btn logout">Sair</a>
+    </div>
+</nav>
+
 <div class="table-container">
     <h1>Fornecedores Cadastrados</h1>
 

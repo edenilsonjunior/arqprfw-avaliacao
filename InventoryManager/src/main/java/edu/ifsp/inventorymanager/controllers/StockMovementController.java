@@ -1,6 +1,7 @@
 package edu.ifsp.inventorymanager.controllers;
 
 import edu.ifsp.inventorymanager.models.entities.StockMovement;
+import edu.ifsp.inventorymanager.models.enums.StockMovementType;
 import edu.ifsp.inventorymanager.models.repositories.ProductRepository;
 import edu.ifsp.inventorymanager.models.repositories.StockMovementRepository;
 import edu.ifsp.inventorymanager.models.repositories.UserRepository;
@@ -32,16 +33,37 @@ public class StockMovementController {
 
     @GetMapping("/register")
     public String register(Model model) {
+
         model.addAttribute("products", productRepository.findAll());
+
         model.addAttribute("users", userRepository.findAll());
+
         model.addAttribute("stockMovement", new StockMovement());
-        return "create-stock-movement";
+
+        model.addAttribute("movementType", StockMovementType.values());
+
+        return "stock-movement/create-stock-movement";
     }
 
     @PostMapping("/save")
     public String save(StockMovement stockMovement) {
+
         log.info(stockMovement.toString());
+
         stockMovementRepository.save(stockMovement);
+
+        var product = productRepository.findById(stockMovement.getProduct().getId()).orElse(null);
+
+        var originalQuantity = product.getQuantity();
+
+        if (stockMovement.getMovementType() == StockMovementType.INPUT) {
+            product.setQuantity(originalQuantity + stockMovement.getQuantity());
+        } else {
+            product.setQuantity(originalQuantity - stockMovement.getQuantity());
+        }
+
+        productRepository.save(product);
+
         return "redirect:/stock-movement/list";
     }
 

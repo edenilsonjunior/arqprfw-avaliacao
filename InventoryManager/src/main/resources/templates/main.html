@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-left">
+        <a th:href="@{/main}">
+            <i class='bx bx-package logo'></i>
+        </a>
+    </div>
+    <div class="navbar-right">
+        <a href="/logout" class="btn logout">Sair</a>
+    </div>
+</nav>
+
+<div class="main-container" style="margin-top: 120px;">
+    <h1 th:text="'Olá ' + ${user.name} + ', seja bem-vindo(a)!'">Olá Usuário, seja bem-vindo(a)!</h1>
+
+    <p><strong>Algumas de nossas funcionalidades:</strong></p>
+    <ul>
+        <li><a th:href="@{/products/list}">Consultar produtos</a></li>
+        <li><a th:href="@{/supplier/list}">Listagem de fornecedores</a></li>
+        <li><a th:href="@{/categories/list}">Listagem de categorias de produto</a></li>
+    </ul>
+</div>
+</body>
+</html>

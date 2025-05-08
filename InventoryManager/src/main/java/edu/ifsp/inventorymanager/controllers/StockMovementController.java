@@ -1,6 +1,7 @@
 package edu.ifsp.inventorymanager.controllers;
 
 import edu.ifsp.inventorymanager.models.entities.StockMovement;
+import edu.ifsp.inventorymanager.models.repositories.ProductRepository;
 import edu.ifsp.inventorymanager.models.repositories.StockMovementRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StockMovementController {
 
     private final StockMovementRepository stockMovementRepository;
+    private final ProductRepository productRepository;
 
-    public StockMovementController(StockMovementRepository stockMovementRepository) {
+    public StockMovementController(
+            StockMovementRepository stockMovementRepository,
+            ProductRepository productRepository
+    ) {
         this.stockMovementRepository = stockMovementRepository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/register")
     public String register(Model model) {
+        model.addAttribute("products", productRepository.findAll());
         model.addAttribute("stockMovement", new StockMovement());
         return "create-stock-movement";
     }

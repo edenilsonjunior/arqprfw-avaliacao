@@ -31,4 +31,5 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Supplier supplier;
+
 }

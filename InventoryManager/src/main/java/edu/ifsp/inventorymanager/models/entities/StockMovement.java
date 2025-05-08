@@ -40,4 +40,9 @@ public class StockMovement {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @PrePersist
+    public void prePersist() {
+        this.movementDate = LocalDateTime.now();
+    }
+
 }

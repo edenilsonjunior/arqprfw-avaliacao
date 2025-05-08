@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Movimentação de Estoque</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Movimentação de Estoque</h1>
+
+        <form method="post" th:action="@{/stock-movement/save}" th:object="${stockMovement}">
+
+            <div>
+                <label for="movementType">Tipo: </label>
+                <select id="movementType" th:field="*{movementType}" required>
+                    <option value="" disabled selected>Selecione um tipo</option>
+                    <option value="INPUT">ENTRADA</option>
+                    <option value="OUTPUT">SAIDA</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="quantity">Quantidade: </label>
+                <input type="number" id="quantity" th:field="*{quantity}" required><br>
+            </div>
+
+            <div>
+                <label for="observations">Observações: </label>
+                <input type="text" id="observations" th:field="*{observations}" required><br>
+            </div>
+
+            <div>
+                <label for="product">Produto: </label>
+                <select id="product" th:field="*{product}" required>
+                    <option value="" disabled selected>Selecione um produto</option>
+                    <option th:each="prod : ${products}"
+                            th:value="${prod.id}"
+                            th:text="${prod.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="user">Usuário: </label>
+                <select id="user" th:field="*{user}" required>
+                    <option value="" disabled selected>Selecione um usuário</option>
+                    <option th:each="us : ${users}"
+                            th:value="${us.id}"
+                            th:text="${us.name}">
+                    </option>
+                </select>
+            </div>
+
+            <br>
+
+            <div class="button-group">
+                <button type="submit" class="btn save">Salvar</button>
+                <a th:href="@{/stock-movement/list}" class="btn cancel">Voltar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

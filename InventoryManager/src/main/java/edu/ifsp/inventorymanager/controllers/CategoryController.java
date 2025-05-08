@@ -32,11 +32,11 @@ public class CategoryController {
     @PostMapping("/save")
     public String save(Category category, Model model) {
 
-        log.info("saving employee {}", category);
+        log.info("saving category {}", category);
 
         categoryRepository.save(category);
 
-        return "redirect:/categories/list-categories";
+        return "redirect:/categories/list";
     }
 
     @GetMapping("/list")
@@ -45,5 +45,5 @@ public class CategoryController {
         model.addAttribute("categories", categoryRepository.findAll());
         return "categories/list-categories";
     }
-    
+
 }

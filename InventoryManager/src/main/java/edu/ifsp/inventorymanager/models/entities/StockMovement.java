@@ -20,6 +20,7 @@ public class StockMovement {
     private Long id;
 
     @Column(name = "movement_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private StockMovementType movementType;
 
     @Column(nullable = false)

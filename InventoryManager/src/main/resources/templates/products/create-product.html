@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Produto</title>
+  <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+  <h1>Cadastro de Produto</h1>
+
+  <form th:action="@{/products/save}" th:object="${product}" method="post">
+
+    <div>
+      <label for="name">Nome:</label>
+      <input type="text" id="name" th:field="*{name}" required>
+    </div>
+
+    <div>
+      <label for="position">Descrição:</label>
+      <input type="text" id="position" th:field="*{description}" required>
+    </div>
+
+    <div>
+      <label for="price">Preço</label>
+      <input type="number" step="0.01" id="price" th:field="*{price}" required>
+    </div>
+
+    <div>
+      <label for="quantity">Quantidade</label>
+      <input type="number" step="1" id="quantity" th:field="*{quantity}" required>
+    </div>
+
+
+    <div>
+      <label for="category">Categoria</label>
+      <select id="category" th:field="*{category}" required>
+        <option value="" disabled selected>Selecione uma categoria</option>
+        <option th:each="dept : ${categories}"
+                th:value="${dept.id}"
+                th:text="${dept.name}">
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="supplier">Fornecedor</label>
+      <select id="supplier" th:field="*{supplier}" required>
+        <option value="" disabled selected>Selecione um categoria</option>
+        <option th:each="dept : ${suppliers}"
+                th:value="${dept.id}"
+                th:text="${dept.name}">
+        </option>
+      </select>
+    </div>
+
+    <br>
+
+    <div class="button-group">
+      <button type="submit" class="btn save">Salvar</button>
+      <a th:href="@{/products/list}" class="btn cancel">Voltar</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>
